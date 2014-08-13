@@ -20,9 +20,9 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="row">
-            <div class="col-md-12 player-wrapper" id="js-player"></div>
+    <div class="row player-wrapper" id="js-player">
+        <div class="col-md-12 text-center">
+            <span class="text-success">点击下方节目开始播放</span>
         </div>
     </div>
 
@@ -62,7 +62,7 @@
 <script type="text/x-jquery-tmpl" id="js-podcast-list-tpl">
     <ul class="list-group podcast-items">
         {{#podcasts}}
-        <li class="list-group-item podcast-item" data-id="{{id}}" title="{{description}}">{{title}}</li>
+        <li class="list-group-item podcast-item" data-id="{{id}}" title="点击播放">{{title}}</li>
         {{/podcasts}}
     </ul>
 </script>

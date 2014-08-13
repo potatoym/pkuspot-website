@@ -213,6 +213,16 @@ img {
     color: #999;
     text-decoration: none;
     background-color: white;
+    opacity: 0;
+    -webkit-transition: opacity 300ms;
+    -khtml-transition: opacity 300ms;
+    -moz-transition: opacity 300ms;
+    -ms-transition: opacity 300ms;
+    -o-transition: opacity 300ms;
+    transition: opacity 300ms;
+}
+.latest-podcast:hover .more-btn {
+    opacity: 1;
 }
 
 .copyright {
