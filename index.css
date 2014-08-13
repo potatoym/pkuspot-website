@@ -1,0 +1,211 @@
+/* events animation */
+@-webkit-keyframes _shark_rotate { 
+    0% { -webkit-transform: translate(0, 0) rotate(0); }
+    12.5% { -webkit-transform: translate(-1px, -1px); }
+    25% { -webkit-transform: translate(-2px, 0) rotate(.8deg); }
+    37.5% { -webkit-transform: translate(-1px, 1px); }
+    50% { -webkit-transform: translate(0, 0) rotate(0); }
+    62.5% { -webkit-transform: translate(1px, -1px); }
+    75% { -webkit-transform: translate(2px, 0) rotate(-.8deg); }
+    87.5% { -webkit-transform: translate(1px, 1px); }
+    100% { -webkit-transform: translate(0, 0) rotate(0); }
+}
+@-moz-keyframes _shark_rotate { 
+    0% { -moz-transform: translate(0, 0) rotate(0); }
+    12.5% { -moz-transform: translate(-1px, -1px); }
+    25% { -moz-transform: translate(-2px, 0) rotate(.8deg); }
+    37.5% { -moz-transform: translate(-1px, 1px); }
+    50% { -moz-transform: translate(0, 0) rotate(0); }
+    62.5% { -moz-transform: translate(1px, -1px); }
+    75% { -moz-transform: translate(2px, 0) rotate(-.8deg); }
+    87.5% { -moz-transform: translate(1px, 1px); }
+    100% { -moz-transform: translate(0, 0) rotate(0); }
+}
+@-ms-keyframes _shark_rotate { 
+    0% { -ms-transform: translate(0, 0) rotate(0); }
+    12.5% { -ms-transform: translate(-1px, -1px); }
+    25% { -ms-transform: translate(-2px, 0) rotate(.8deg); }
+    37.5% { -ms-transform: translate(-1px, 1px); }
+    50% { -ms-transform: translate(0, 0) rotate(0); }
+    62.5% { -ms-transform: translate(1px, -1px); }
+    75% { -ms-transform: translate(2px, 0) rotate(-.8deg); }
+    87.5% { -ms-transform: translate(1px, 1px); }
+    100% { -ms-transform: translate(0, 0) rotate(0); }
+}
+@-o-keyframes _shark_rotate { 
+    0% { -o-transform: translate(0, 0) rotate(0); }
+    12.5% { -o-transform: translate(-1px, -1px); }
+    25% { -o-transform: translate(-2px, 0) rotate(.8deg); }
+    37.5% { -o-transform: translate(-1px, 1px); }
+    50% { -o-transform: translate(0, 0) rotate(0); }
+    62.5% { -o-transform: translate(1px, -1px); }
+    75% { -o-transform: translate(2px, 0) rotate(-.8deg); }
+    87.5% { -o-transform: translate(1px, 1px); }
+    100% { -o-transform: translate(0, 0) rotate(0); }
+}
+/*
+ Chrome 32 has a bug here
+ See code.google.com/p/chromium/issues/detail?id=303150
+*/
+/*@keyframes _shark_rotate { 
+    0% { transform: translate(0, 0) rotate(0); }
+    12.5% { transform: translate(-1px, -1px); }
+    25% { transform: translate(-2px, 0) rotate(.8deg); }
+    37.5% { transform: translate(-1px, 1px); }
+    50% { transform: translate(0, 0) rotate(0); }
+    62.5% { transform: translate(1px, -1px); }
+    75% { transform: translate(2px, 0) rotate(-.8deg); }
+    87.5% { transform: translate(1px, 1px); }
+    100% { transform: translate(0, 0) rotate(0); }
+}*/
+/* /events animation */
+
+body {
+    background: white;
+    font-size: 16px;
+}
+
+img {
+    max-width: 100%;
+}
+
+.container {
+    width: 800px;
+    margin: 50px auto;
+}
+
+.col-left {
+    float: left;
+}
+.col-right {
+    float: right;
+    width: 400px;
+}
+
+.big-logo {
+    width: 320px;
+}
+.big-logo img {
+    width: 100%;
+}
+.wechat-qrcode {
+    display: none;
+}
+
+.icons {
+    text-align: center;
+}
+.icon {
+    float: left;
+    width: 100px;
+    margin: 1rem;
+}
+.icon a {
+    display: block;
+    outline: none;
+    text-decoration: none;
+}
+
+.icon img {
+    width: 100%;
+    border-radius: 1.5rem;
+}
+.icon.weibo img {
+    background-color: #EAEFA4;
+}
+.icon .caption {
+    font-size: 1.1em;
+    margin-top: .4em;
+}
+
+.right-icon-row {
+    padding: 3% 0;
+}
+
+
+@media only screen and (min-width: 800px) {
+    .big-logo {
+        position: relative;
+        height: 320px;
+    }
+    .big-logo img {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .wechat-qrcode {
+        display: block;
+    }
+    .pkuspot-logo {
+        z-index: 6;
+        background: white;
+        border-radius: 10px;
+        -webkit-transition: all 360ms ease;
+        -khtml-transition: all 360ms ease;
+        -moz-transition: all 360ms ease;
+        -ms-transition: all 360ms ease;
+        -o-transition: all 360ms ease;
+        transition: all 360ms ease;
+    }
+    .big-logo:hover .pkuspot-logo {
+        width: 50px;
+        left: 135px;
+        top: 135px;
+    }
+    .icon a:hover {
+        -webkit-animation: _shark_rotate 600ms linear infinite;
+        -moz-animation: _shark_rotate 600ms linear infinite;
+        -ms-animation: _shark_rotate 600ms linear infinite;
+        -o-animation: _shark_rotate 600ms linear infinite;
+        animation: _shark_rotate 600ms linear infinite;
+    }
+}
+
+
+@media only screen and (max-width: 800px) {
+    .container {
+        width: 88%;
+        margin: 20px auto;
+    }
+    .big-logo {
+        margin: 20px auto;
+    }
+    .col {
+        float: none;
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 460px) {
+    .big-logo {
+        width: 100%;
+        height: auto;
+    }
+
+    .icon {
+        width: 40%;
+        margin: 5%;
+    }
+
+    .icon .caption {
+        font-size: .9em;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
