@@ -1,5 +1,11 @@
 (function($) {
 
+    /**
+     * 是否为移动设备
+     * @type {Boolean}
+     */
+    var isMobileDevice = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()));
+
     // 微信图标与左侧二维码联动
     var $logo = $('.big-logo');
     var showClassName = 'show-qrcode';
@@ -9,12 +15,17 @@
         $logo.removeClass(showClassName);
     });
 
-    // 捐赠浮层
-    $('.icon.alipay a').fancybox({
-        width: 420,
-        height: 300,
-        type: 'iframe'
-    });
+    // PC平台出浮层
+    if (!isMobileDevice) {
+        $('.icon.alipay a').fancybox({
+            width: 420,
+            height: 300,
+            type: 'iframe'
+        });
+        $('#js-podcast-more-btn').fancybox({
+            type: 'iframe'
+        });
+    }
 
     // 最新一集
     var podcast_tpl = $('#js-latest-podcast-tpl').html();

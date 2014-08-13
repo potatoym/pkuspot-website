@@ -1,0 +1,70 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>捐赠 - 在北大不吐槽会死播客</title>
+    <link rel="stylesheet" type="text/css" href="http://cdn.staticfile.org/twitter-bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style/all-podcasts.css">
+    <script type="text/javascript" src="http://cdn.staticfile.org/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/mustache.js/0.8.1/mustache.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>全部节目 <small>在北大不吐槽会死播客</small></h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="row">
+            <div class="col-md-12 player-wrapper" id="js-player"></div>
+        </div>
+    </div>
+
+    <div class="row">&nbsp;</div>
+
+    <div class="row">
+        <div class="col-md-12 podcast-filter">
+            <div class="input-group">
+                <!-- <span class="input-group-addon">过滤器</span> -->
+                <input type="text" class="form-control" id="js-podcast-filter-text">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" id="js-podcast-filter-button" type="button">搜索</button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">&nbsp;</div>
+
+    <div class="row">
+        <div class="col-md-12 podcast-list" id="js-podcast-list"></div>
+    </div>
+    
+</div>
+
+</body>
+<script type="text/x-jquery-tmpl" id="js-player-tpl">
+    <div class="col-sm-9 title">{{title}}</div>
+    <div class="col-sm-3 pubdate text-right">{{#pubdate}}{{year}}年{{month}}月{{day}}日 {{hour}}时{{/pubdate}}</div>
+
+    <div class="col-sm-12 description">{{description}}</div>
+
+    <div class="col-sm-12 player">
+        <audio src="{{{guid}}}" controls autoplay></audio>
+    </div>
+</script>
+<script type="text/x-jquery-tmpl" id="js-podcast-list-tpl">
+    <ul class="list-group podcast-items">
+        {{#podcasts}}
+        <li class="list-group-item podcast-item" data-id="{{id}}" title="{{description}}">{{title}}</li>
+        {{/podcasts}}
+    </ul>
+</script>
+<script type="text/javascript" src="script/all-podcasts.js"></script>
+</html>

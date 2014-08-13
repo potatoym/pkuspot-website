@@ -179,6 +179,7 @@ img {
 
 .latest-podcast {
     display: none;
+    position: relative;
 }
 #js-latest-podcast {
     margin-top: 20px;
@@ -202,6 +203,16 @@ img {
 }
 .latest-podcast .podcast-player audio {
     width: 100%;
+}
+.latest-podcast .more-btn {
+    padding: 0 5px;
+    position: absolute;
+    right: 0;
+    top: 3px;
+    font-size: .75em;
+    color: #999;
+    text-decoration: none;
+    background-color: white;
 }
 
 .copyright {

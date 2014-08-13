@@ -7,7 +7,7 @@
     <meta name="keywords" content="在北大不吐槽会死,pkuspot,播客,Podcast,90后">
     <meta name="author" content="Kyle He (hk1229.cn)">
     <title>在北大不吐槽会死-播客 Pkuspot-Podcast</title>
-    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="style/index.css">
     <link rel="stylesheet" type="text/css" href="http://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.min.css">
     <script type="text/javascript" src="http://cdn.staticfile.org/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="http://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.min.js"></script>
@@ -37,6 +37,7 @@
 
             <div class="row latest-podcast">
                 <div class="title"><span>最新一期</span></div>
+                <a href="all-podcasts.html" class="more-btn" id="js-podcast-more-btn">更多节目</a>
                 <div id="js-latest-podcast"></div>
             </div>
 
@@ -120,7 +121,7 @@
                 <div class="title"><span>投喂渠道</span></div>
                 <div class="icons">
                     <div class="icon alipay">
-                        <a href="donate/alipay.html" target="_blank">
+                        <a href="donate-alipay.html" target="_blank">
                             <img src="http://default.u.qiniudn.com/alipay-logo.png" />
                             <div class="caption">支付宝</div>
                         </a>
@@ -149,5 +150,5 @@
     <div class="podcast-description">{{description}}</div>
     <div class="podcast-player"><audio src="{{{guid}}}" controls></audio></div>
 </script>
-<script type="text/javascript" src="index.js"></script>
+<script type="text/javascript" src="script/index.js"></script>
 </html>

@@ -1,0 +1,29 @@
+body {
+    width: 400px;
+    height: 250px;
+    padding: 10px;
+}
+.container {
+    width: 100%;
+}
+.zclip-button {
+    width: 50px;
+    background: url(http://default.u.qiniudn.com/icon-copy.png) no-repeat center center;
+    background-size: 24px auto;
+}
+.input-group-addon {
+    font-size: 16px;
+}
+.input-group-lg .form-control {
+    font-size: 1.8em;
+}
+.form-control[readonly] {
+    background: white;
+    cursor: auto;
+}
+#msg-container {
+    display: none;
+}
+.page-header {
+    margin: 20px 0;
+}
