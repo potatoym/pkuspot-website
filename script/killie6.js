@@ -1,0 +1,5 @@
+(function($, html) {
+    $(function(){
+        $('body').append(html);
+    });
+})(jQuery,'<div id="letskillie6"><div class="letskillie6-r4"></div><div class="letskillie6-r2"></div><div class="letskillie6-r1"></div><div class="letskillie6-r1"></div><div class="letskillie6-content"><a rel="nofollow" id="letskillie6-close" href="javascript:;"></a><span class="letskillie6-pic"></span><div class="letskillie6-desc">您正在使用低版本 Internet Explorer 浏览网页，如果您 <strong>升级到 Internet Explorer 9</strong> 或 <strong>转换到另一款浏览器</strong>，可以获得更好的网站浏览体验。</div><div style="clear: both;"></div><div class="letskillie6-browsers"><a rel="nofollow" class="letskillie6-ie8" href="http://www.microsoft.com/windows/internet-explorer/">IE 9</a><a rel="nofollow" class="letskillie6-firefox" href="http://www.mozilla.com/">Firefox</a><a rel="nofollow" class="letskillie6-chrome" href="http://www. google.com/chrome/">Chrome</a><a rel="nofollow" class="letskillie6-opera" href="http://www.opera.com/">Opera</a><div style="clear:both;"></div></div></div><div class="letskillie6-r1"></div><div class="letskillie6-r1"></div><div class="letskillie6-r2"></div><div class="letskillie6-r4"></div></div>');
