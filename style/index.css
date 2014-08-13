@@ -74,7 +74,7 @@ img {
 
 .container {
     width: 900px;
-    margin: 50px auto 10px auto;
+    margin: 50px auto 30px auto;
 }
 
 .clearfix {
@@ -225,15 +225,18 @@ img {
     opacity: 1;
 }
 
-.copyright {
+.footer {
     margin-top: 50px;
     text-align: center;
     font-size: .8em;
     color: #999;
 }
-.copyright a {
+.footer a {
     color: inherit;
     text-decoration: none;
+}
+.footer a:hover {
+    text-decoration: underline;
 }
 
 @media only screen and (min-width: 900px) {
@@ -313,9 +316,13 @@ img {
 }
 
 
-
-
-
+.footer .sns-share {
+    margin-bottom: 10px;
+}
+.footer .bdsharebuttonbox {
+    width: 180px;
+    margin: 0 auto;
+}
 
 
 
