@@ -23,8 +23,16 @@
     function playPodcastById(id) {
         if (!podcastData[id]) return -1;
         renderPodcastPlayer(podcastData[id]);
+        checkAudioPlayerCompatibility();
         currentPlayingPodcastId = id;
         return id;
+    }
+
+    function checkAudioPlayerCompatibility() {
+        var $audio = $('#js-audio-player');
+        if (!$audio.get(0).play) {
+            $player.html($('#js-upgrade-browser-message-tpl').html());
+        }
     }
 
     var podcastData;
