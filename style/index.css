@@ -205,6 +205,7 @@ img {
     width: 100%;
 }
 .latest-podcast .more-btn {
+    display: none;
     padding: 0 5px;
     position: absolute;
     right: 0;
@@ -213,16 +214,6 @@ img {
     color: #999;
     text-decoration: none;
     background-color: white;
-    opacity: 0;
-    -webkit-transition: opacity 300ms;
-    -khtml-transition: opacity 300ms;
-    -moz-transition: opacity 300ms;
-    -ms-transition: opacity 300ms;
-    -o-transition: opacity 300ms;
-    transition: opacity 300ms;
-}
-.latest-podcast:hover .more-btn {
-    opacity: 1;
 }
 
 .footer {
@@ -238,6 +229,134 @@ img {
 .footer a:hover {
     text-decoration: underline;
 }
+.footer .sns-share {
+    margin-bottom: 10px;
+}
+.footer .bdsharebuttonbox {
+    width: 180px;
+    margin: 0 auto;
+}
+
+
+
+.container-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    -webkit-transition: left 500ms ease;
+    -khtml-transition: left 500ms ease;
+    -moz-transition: left 500ms ease;
+    -ms-transition: left 500ms ease;
+    -o-transition: left 500ms ease;
+    transition: left 500ms ease;
+}
+.right-vertical-banner {
+    width: 320px;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    right: -320px;
+    background: #ccc url(//default.u.qiniudn.com/osx-bg.jpg);
+    box-shadow: 8px 0 8px #333 inset;
+    color: white;
+}
+.right-vertical-banner-inner {
+    margin: 36px 20px;
+}
+.right-vertical-banner .banner-switch-btn {
+    position: absolute;
+    top: 16px;
+    left: -32px;
+    display: block;
+    width: 32px;
+    height: 24px;
+    line-height: 24px;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    background-color: skyblue;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.right-vertical-banner .banner-switch-btn:before {
+    content: '<<';
+}
+body.show-banner .container-wrapper {
+    overflow: visible;
+    left: -320px;
+}
+body.hiding-banner .container-wrapper {
+    left: 0;
+}
+body.show-banner .right-vertical-banner .banner-switch-btn:before {
+    content: '>>';
+}
+
+body.mobile .right-vertical-banner {
+    /*display: none;*/
+}
+
+.all-podcasts-wrapper {
+    font-family: 'SimSun';
+}
+.all-podcasts-wrapper h1 {
+    margin-bottom: 1em;
+    padding-left: 5px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #CCC;
+    font-size: 22px;
+}
+.all-podcasts-wrapper .loading {
+    margin-top: 3em;
+    text-align: center;
+}
+.all-podcasts-wrapper .loading img {
+    width: 32px;
+    height: 32px;
+}
+.all-podcasts-wrapper .podcast-list {
+    padding-left: 0;
+    list-style-position: inside;
+    list-style-type: circle;
+    font-size: 14px;
+}
+.all-podcasts-wrapper .podcast-list li {
+    margin: 8px 0;
+    padding: 2px 0 2px 8px;
+    position: relative;
+}
+.all-podcasts-wrapper .podcast-list .podcast-list-play-btn {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background: url(//default.u.qiniudn.com/play-btn.png) no-repeat center;
+    background-size: 100%;
+    text-decoration: none;
+}
+.all-podcasts-wrapper .podcast-list li:hover .podcast-list-play-btn {
+    display: block;
+}
+.all-podcasts-wrapper .podcast-list .podcast-title {
+    display: inline-block;
+    width: 80%;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+}
+.all-podcasts-wrapper .podcast-list .podcast-pubdate {
+    position: absolute;
+    right: 0;
+    top: 4px;
+    font-size: 12px;
+    color: #ccc;
+}
+
+
 
 @media only screen and (min-width: 900px) {
     .big-logo {
@@ -313,16 +432,16 @@ img {
         top: 32%;
     }
 
+    body .right-vertical-banner {
+        display: none;
+    }
+    .latest-podcast .more-btn {
+        display: inline;
+    }
 }
 
 
-.footer .sns-share {
-    margin-bottom: 10px;
-}
-.footer .bdsharebuttonbox {
-    width: 180px;
-    margin: 0 auto;
-}
+
 
 
 
