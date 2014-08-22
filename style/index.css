@@ -43,11 +43,7 @@
     87.5% { -o-transform: translate(1px, 1px); }
     100% { -o-transform: translate(0, 0) rotate(0); }
 }
-/*
- Chrome 32 has a bug here
- See code.google.com/p/chromium/issues/detail?id=303150
-*/
-/*@keyframes _shark_rotate { 
+@keyframes _shark_rotate { 
     0% { transform: translate(0, 0) rotate(0); }
     12.5% { transform: translate(-1px, -1px); }
     25% { transform: translate(-2px, 0) rotate(.8deg); }
@@ -57,7 +53,7 @@
     75% { transform: translate(2px, 0) rotate(-.8deg); }
     87.5% { transform: translate(1px, 1px); }
     100% { transform: translate(0, 0) rotate(0); }
-}*/
+}
 /* /events animation */
 
 body {
@@ -182,8 +178,7 @@ img {
     position: relative;
 }
 #js-latest-podcast {
-    margin-top: 20px;
-    margin-bottom: 30px;
+    margin: 20px 10px 30px 10px;
 }
 .latest-podcast .podcast-title {
     font-size: 1.2em;
@@ -241,7 +236,104 @@ img {
 
 .container-wrapper {
     width: 100%;
-    overflow: hidden;
+    position: absolute;
+    z-index: 6;
+    top: 0;
+    left: 0;
+    background: white;
+    -webkit-transition: left 500ms ease;
+    -khtml-transition: left 500ms ease;
+    -moz-transition: left 500ms ease;
+    -ms-transition: left 500ms ease;
+    -o-transition: left 500ms ease;
+    transition: left 500ms ease;
+}
+
+.right-banner-toggle-switch-btn {
+    position: fixed;
+    z-index: 8;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 42px;
+    height: 42px;
+    background: url(//default.u.qiniudn.com/list-icon.png) no-repeat center;
+    background-size: 22px;
+    text-decoration: none;
+    -webkit-transition: right 500ms ease;
+    -khtml-transition: right 500ms ease;
+    -moz-transition: right 500ms ease;
+    -ms-transition: right 500ms ease;
+    -o-transition: right 500ms ease;
+    transition: right 500ms ease;
+}
+body.show-banner .container-wrapper {
+    left: -320px;
+}
+body.show-banner .right-banner-toggle-switch-btn {
+    right: 320px;
+}
+
+.right-vertical-banner {
+    width: 320px;
+    height: 100%;
+    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: fixed;
+    z-index: 4;
+    top: 0;
+    right: 0;
+    background: #ccc url(//default.u.qiniudn.com/osx-bg.jpg);
+    box-shadow: 8px 0 8px #333 inset;
+    color: white;
+    font-family: 'SimSun';
+}
+
+
+.right-banner-navi {
+    height: 28px;
+    border-bottom: 1px solid #999;
+    padding: 14px 20px 8px 20px;
+    position: fixed;
+    z-index: 5;
+    width: 280px;
+    background: #ccc url(//default.u.qiniudn.com/osx-bg.jpg);
+}
+.right-banner-navi .banner-navi-btn {
+    display: block;
+    float: left;
+    width: 50%;
+    height: 24px;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background: #666;
+}
+.right-banner-navi .banner-navi-btn:first-child {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.right-banner-navi .banner-navi-btn:last-child {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+.right-banner-navi .banner-navi-btn.active,
+.right-vertical-banner.show-podcast-list .banner-navi-podcast-btn,
+.right-vertical-banner.show-help .banner-navi-help-btn {
+    color: black;
+    background: #ccc;
+    box-shadow: 0 0 4px #FFF;
+}
+
+.right-banner-content-wrapper {
+    margin: 60px 20px 20px 20px;
+    position: relative;
+}
+.right-banner-content {
+    width: 999px;
     position: absolute;
     left: 0;
     -webkit-transition: left 500ms ease;
@@ -251,83 +343,40 @@ img {
     -o-transition: left 500ms ease;
     transition: left 500ms ease;
 }
-.right-vertical-banner {
-    width: 320px;
-    min-height: 100%;
-    position: absolute;
-    top: 0;
-    right: -320px;
-    background: #ccc url(//default.u.qiniudn.com/osx-bg.jpg);
-    box-shadow: 8px 0 8px #333 inset;
-    color: white;
+.right-banner-content .all-podcasts,
+.right-banner-content .help-info {
+    width: 280px;
+    margin-right: 20px;
+    float: left;
 }
-.right-vertical-banner-inner {
-    margin: 36px 20px;
-}
-.right-vertical-banner .banner-switch-btn {
-    position: absolute;
-    top: 16px;
-    left: -32px;
-    display: block;
-    width: 32px;
-    height: 24px;
-    line-height: 24px;
-    color: white;
-    font-size: 14px;
-    text-align: center;
-    text-decoration: none;
-    background-color: skyblue;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-}
-.right-vertical-banner .banner-switch-btn:before {
-    content: '<<';
-}
-body.show-banner .container-wrapper {
-    overflow: visible;
-    left: -320px;
-}
-body.hiding-banner .container-wrapper {
+.right-vertical-banner.show-podcast-list .right-banner-content {
     left: 0;
 }
-body.show-banner .right-vertical-banner .banner-switch-btn:before {
-    content: '>>';
+.right-vertical-banner.show-help .right-banner-content {
+    left: -300px;
 }
 
-body.mobile .right-vertical-banner {
-    /*display: none;*/
-}
 
-.all-podcasts-wrapper {
-    font-family: 'SimSun';
-}
-.all-podcasts-wrapper h1 {
-    margin-bottom: 1em;
-    padding-left: 5px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #CCC;
-    font-size: 22px;
-}
-.all-podcasts-wrapper .loading {
+.right-banner-content .all-podcasts .loading {
     margin-top: 3em;
     text-align: center;
 }
-.all-podcasts-wrapper .loading img {
+.right-banner-content .all-podcasts .loading img {
     width: 32px;
     height: 32px;
 }
-.all-podcasts-wrapper .podcast-list {
+.right-banner-content .all-podcasts .podcast-list {
     padding-left: 0;
     list-style-position: inside;
     list-style-type: circle;
     font-size: 14px;
 }
-.all-podcasts-wrapper .podcast-list li {
+.right-banner-content .all-podcasts .podcast-list li {
     margin: 8px 0;
     padding: 2px 0 2px 8px;
     position: relative;
 }
-.all-podcasts-wrapper .podcast-list .podcast-list-play-btn {
+.right-banner-content .all-podcasts .podcast-list .podcast-list-play-btn {
     display: none;
     position: absolute;
     left: 0;
@@ -338,17 +387,17 @@ body.mobile .right-vertical-banner {
     background-size: 100%;
     text-decoration: none;
 }
-.all-podcasts-wrapper .podcast-list li:hover .podcast-list-play-btn {
+.right-banner-content .all-podcasts .podcast-list li:hover .podcast-list-play-btn {
     display: block;
 }
-.all-podcasts-wrapper .podcast-list .podcast-title {
+.right-banner-content .all-podcasts .podcast-list .podcast-title {
     display: inline-block;
     width: 80%;
     white-space:nowrap;
     overflow:hidden;
     text-overflow: ellipsis;
 }
-.all-podcasts-wrapper .podcast-list .podcast-pubdate {
+.right-banner-content .all-podcasts .podcast-list .podcast-pubdate {
     position: absolute;
     right: 0;
     top: 4px;
@@ -356,6 +405,36 @@ body.mobile .right-vertical-banner {
     color: #ccc;
 }
 
+.right-banner-content .help-info h2 {
+    margin: 10px 0;
+    font-size: 18px;
+}
+.right-banner-content .help-info dl {
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+.right-banner-content .help-info dt {
+    padding-bottom: 6px;
+    border-bottom: 1px solid #666;
+}
+.right-banner-content .help-info dd {
+    margin-left: 12px;
+}
+.right-banner-content .help-info ul {
+    padding-left: 0;
+    list-style: none;
+}
+.right-banner-content .help-info li {
+    margin: 8px 0;
+}
+.right-banner-content .help-info .key {
+    padding: 2px 5px;
+    border: 1px solid #666;
+    border-radius: 4px;
+    background: rgba(0,0,0,.6);
+    margin-right: 8px;
+    font-weight: bold;
+}
 
 
 @media only screen and (min-width: 900px) {

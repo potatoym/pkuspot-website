@@ -24,10 +24,10 @@
 //
 //               佛祖保佑         永无BUG
 //
-
+//
 // Main
 (function($) {
-
+    // Body
     var $body = $('body');
 
     /**
@@ -63,23 +63,16 @@
     var podcast_tpl = $('#js-latest-podcast-tpl').html();
     var all_podcasts_tpl = $('#js-all-podcasts-tpl').html();
     function getDateAndTime(pubdate) {
-        /*var d = new Date(pubdate);
-        return {
-            'year': d.getFullYear(),
-            'month': d.getMonth() + 1,
-            'day': d.getDate(),
-            'hour': d.getHours()
-        };*/
         var pd = new Date(pubdate);
         var td = new Date();
         var diff = (td.getTime() - pd.getTime()) / 1000;
         if (diff / 3600 / 24 > 99) {
             return (pd.getMonth() + 1) + '月' + pd.getDate() + '日';
-        } else if (diff / 3600 / 24 > 1) {
+        } else if (diff / 3600 / 24 >= 1) {
             return Math.round(diff / 3600 / 24) + '天前';
-        } else if (diff / 3600 > 1) {
+        } else if (diff / 3600 >= 1) {
             return Math.round(diff / 3600) + '小时前';
-        } else if (diff / 60 > 1) {
+        } else if (diff / 60 >= 1) {
             return Math.round(diff / 60) + '分钟前';
         } else {
             return Math.round(diff) + '秒前';
@@ -115,23 +108,13 @@
 
     // 打开右侧栏按钮
     var isRightBannerShowing = false;
-    var rightBannerShowingAnimateTimer;
-    $('.banner-switch-btn').click(function(event) {
+    $('.right-banner-toggle-switch-btn').click(function(event) {
         event.preventDefault();
-        clearTimeout(rightBannerShowingAnimateTimer);
-        if (!isRightBannerShowing) {
-            $body.removeClass('hiding-banner');
-            $body.addClass('show-banner');
-            renderAllPodcasts();
-        } else {
-            $body.addClass('hiding-banner');
-            rightBannerShowingAnimateTimer = setTimeout(function() {
-                $body.removeClass('show-banner hiding-banner');
-            }, 500);
-        }
-        isRightBannerShowing = !isRightBannerShowing;
+        $body.toggleClass('show-banner');
+        renderAllPodcasts();
     });
-    $('.all-podcasts').delegate('.podcast-list-play-btn', 'click', function(event) {
+    var $rightVerticalBanner = $('.right-vertical-banner');
+    $rightVerticalBanner.delegate('.podcast-list-play-btn', 'click', function(event) {
         event.preventDefault();
         var id = parseInt($(this).data('id'), 10) - 1;
         if (podcastsData[id]) {
@@ -139,6 +122,12 @@
             renderPodcastPlayer(podcastsData[id]);
         }
         $('.latest-podcast .title span').html('第 ' + (podcastsData.length - id) + ' 期');
+    }).delegate('.banner-navi-podcast-btn', 'click', function(event) {
+        event.preventDefault();
+        $rightVerticalBanner.removeClass('show-help').addClass('show-podcast-list');
+    }).delegate('.banner-navi-help-btn', 'click', function(event) {
+        event.preventDefault();
+        $rightVerticalBanner.removeClass('show-podcast-list').addClass('show-help');
     });
 
 })(jQuery);
@@ -149,7 +138,7 @@
 (function($, T) {
     // 右侧栏
     T.bind(['i', 'I'], function() {
-        $('.banner-switch-btn').click();
+        $('.right-banner-toggle-switch-btn').click();
     });
 
     // Podcast 播放器
@@ -235,3 +224,4 @@ window._bd_share_config = {
     },
     "share": {}
 };
+
