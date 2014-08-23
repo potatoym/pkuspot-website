@@ -44,9 +44,6 @@
     var isMobileDevice = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()));
     window['mobile'] = isMobileDevice;
 
-    var isSupportHashChangeEvent = 'onhashchange' in window;
-    window['isSupportHashChangeEvent'] = isSupportHashChangeEvent;
-
     /**
      * Left Logo Handler
      * @type {jQueryElements}
@@ -192,14 +189,13 @@
         return hashPrefix + (location.hash.indexOf(rightBannerHashTag) >= 0 ? '' : rightBannerHashTag);
     }
     window['getRightBannerToggleSwitchBtnHref'] = getRightBannerToggleSwitchBtnHref;
+    
     $('.right-banner-toggle-switch-btn').click(function(event) {
         $(this).attr('href', getRightBannerToggleSwitchBtnHref());
-        if (!isSupportHashChangeEvent) toggleRightBanner();
     });
+
     toggleRightBanner();
-    if (isSupportHashChangeEvent) {
-        window.onhashchange = toggleRightBanner;
-    }
+    $(window).hashchange(toggleRightBanner);
     
     /**
      * 右侧边栏
@@ -230,7 +226,6 @@
     // 右侧栏
     T.bind(['i', 'I'], function() {
         location.hash = getRightBannerToggleSwitchBtnHref();
-        if (!isSupportHashChangeEvent) toggleRightBanner();
     });
 
     // Podcast 播放器
