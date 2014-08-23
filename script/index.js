@@ -1,4 +1,4 @@
-
+//
 //
 //                       _oo0oo_
 //                      o8888888o
@@ -25,9 +25,16 @@
 //               佛祖保佑         永无BUG
 //
 //
-// Main
+//      PKUSPOT.ORG
+//      Kyle He (admin@hk1229.cn)
+//      2014/08/23 15:27
+//
+//
 (function($) {
-    // Body
+    /**
+     * Body Handler
+     * @type {jQueryElements}
+     */
     var $body = $('body');
 
     /**
@@ -35,17 +42,34 @@
      * @type {Boolean}
      */
     var isMobileDevice = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()));
+    window['mobile'] = isMobileDevice;
 
-    // 微信图标与左侧二维码联动
+    var isSupportHashChangeEvent = 'onhashchange' in window;
+    window['isSupportHashChangeEvent'] = isSupportHashChangeEvent;
+
+    /**
+     * Left Logo Handler
+     * @type {jQueryElements}
+     */
     var $logo = $('.big-logo');
+    /**
+     * Left Logo Classname
+     * @type {String}
+     */
     var showClassName = 'show-qrcode';
+    /**
+     * 微信图标与左侧二维码联动
+     */
     $('.icon.weixin').hover(function() {
         $logo.addClass(showClassName);
     }, function() {
         $logo.removeClass(showClassName);
     });
 
-    // PC平台出浮层
+    /**
+     * 为移动设备添加标志
+     * 为PC平台绑定浮层
+     */
     if (isMobileDevice) {
         $body.addClass('mobile');
     } else {
@@ -59,10 +83,22 @@
         });
     }
 
-    // 最新一集
+    /**
+     * 最新一集 Podcast HTML 模版
+     * @type {string}
+     */
     var podcast_tpl = $('#js-latest-podcast-tpl').html();
+    /**
+     * Podcast 列表 HTML 模版
+     * @type {string}
+     */
     var all_podcasts_tpl = $('#js-all-podcasts-tpl').html();
-    function getDateAndTime(pubdate) {
+    /**
+     * 格式化日期
+     * @param  {stirng} pubdate 通用时间格式字符串
+     * @return {string}         
+     */
+    function formatDate(pubdate) {
         var pd = new Date(pubdate);
         var td = new Date();
         var diff = (td.getTime() - pd.getTime()) / 1000;
@@ -78,24 +114,45 @@
             return Math.round(diff) + '秒前';
         }
     }
+    /**
+     * 渲染 Podcast 播放器
+     * @param  {Object} data Podcast 数据
+     * @return 
+     */
     function renderPodcastPlayer(data) {
         $('#js-latest-podcast').html(Mustache.render(podcast_tpl, data));
     }
+    /**
+     * 获取最新一期数据
+     */
     $.get('api/get-last-program.php', function(xhr) {
-        xhr.pubdate = getDateAndTime(xhr.pubdate);
+        xhr.pubdate = formatDate(xhr.pubdate);
         renderPodcastPlayer(xhr);
         $('.latest-podcast').slideDown();
     });
 
-    // 全部Podcast
+    /**
+     * Podcast 列表是否已经加载
+     * @type {Boolean}
+     */
     var isAllPodcastsLoaded = false;
+
+    /**
+     * Podcast 列表数据
+     * @type {Object}
+     */
     var podcastsData;
+
+    /**
+     * 渲染 Podcast 列表
+     * @return 
+     */
     function renderAllPodcasts() {
         if (!isAllPodcastsLoaded) {
             $.get('api/get-all-programs.php', function(xhr) {
                 for (var i = 0; i < xhr.length; i++) {
                     xhr[i]['id'] = i + 1;
-                    xhr[i]['pubdate'] = getDateAndTime(xhr[i]['pubdate']);
+                    xhr[i]['pubdate'] = formatDate(xhr[i]['pubdate']);
                 }
                 $('#js-all-podcasts').html(Mustache.render(all_podcasts_tpl, {
                     'podcasts': xhr
@@ -106,13 +163,48 @@
         }
     }
 
-    // 打开右侧栏按钮
-    var isRightBannerShowing = false;
+    var hashPrefix = '#!/';
+    /**
+     * 右侧栏Hash标志
+     * @type {String}
+     */
+    var rightBannerHashTag = 'right-banner';
+    /**
+     * 右侧栏打开/关闭按钮
+     * @return 
+     */
+    function toggleRightBanner() {
+        var hash = location.hash.substr(hashPrefix.length);
+        if (hash.indexOf(rightBannerHashTag) >= 0) {
+            $body.addClass('show-banner');
+        } else {
+            $body.removeClass('show-banner');
+        }
+        if ($body.hasClass('show-banner')) {
+            renderAllPodcasts();
+        }
+    }
+    /**
+     * 获取目标Hash
+     * @return {string}
+     */
+    function getRightBannerToggleSwitchBtnHref() {
+        return hashPrefix + (location.hash.indexOf(rightBannerHashTag) >= 0 ? '' : rightBannerHashTag);
+    }
+    window['getRightBannerToggleSwitchBtnHref'] = getRightBannerToggleSwitchBtnHref;
     $('.right-banner-toggle-switch-btn').click(function(event) {
-        event.preventDefault();
-        $body.toggleClass('show-banner');
-        renderAllPodcasts();
+        $(this).attr('href', getRightBannerToggleSwitchBtnHref());
+        if (!isSupportHashChangeEvent) toggleRightBanner();
     });
+    toggleRightBanner();
+    if (isSupportHashChangeEvent) {
+        window.onhashchange = toggleRightBanner;
+    }
+    
+    /**
+     * 右侧边栏
+     * @type {jQueryElements}
+     */
     var $rightVerticalBanner = $('.right-vertical-banner');
     $rightVerticalBanner.delegate('.podcast-list-play-btn', 'click', function(event) {
         event.preventDefault();
@@ -133,12 +225,12 @@
 })(jQuery);
 
 
-
 // 绑定快捷键
 (function($, T) {
     // 右侧栏
     T.bind(['i', 'I'], function() {
-        $('.right-banner-toggle-switch-btn').click();
+        location.hash = getRightBannerToggleSwitchBtnHref();
+        if (!isSupportHashChangeEvent) toggleRightBanner();
     });
 
     // Podcast 播放器
@@ -211,7 +303,10 @@
 
 
 
-// 百度分享参数
+/**
+ * 百度分享参数
+ * @type {Object}
+ */
 window._bd_share_config = {
     "common": {
         "bdSnsKey": {},

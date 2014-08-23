@@ -511,12 +511,12 @@ body.show-banner .right-banner-toggle-switch-btn {
         top: 32%;
     }
 
-    body .right-vertical-banner {
-        display: none;
+    body .right-banner-toggle-switch-btn {
+        width: 24px;
+        height: 32px;
+        background-size: 18px;
     }
-    .latest-podcast .more-btn {
-        display: inline;
-    }
+
 }
 
 
