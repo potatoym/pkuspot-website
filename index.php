@@ -1,3 +1,25 @@
+<?php
+    $ua = $_SERVER['HTTP_USER_AGENT'];
+    // echo $ua;
+    if (
+        stripos($ua, 'Googlebot')   !== false || 
+        stripos($ua, 'Baiduspider') !== false || 
+        stripos($ua, 'bingbot')     !== false ||
+        stripos($ua, 'Yahoo!')      !== false || 
+        stripos($ua, 'YodaoBot')    !== false 
+    ) {
+        $isSpider = true;
+        $podcasts = array();
+        define('PODCASTS_CACHE', 'api/cache/podcasts.json');
+        if (file_exists(PODCASTS_CACHE)) {
+            $podcasts = json_decode(file_get_contents(PODCASTS_CACHE), true);
+        }
+    } 
+    else {
+        $isSpider = false;
+    }
+    // echo $isSpider?'is spider':'not spider';
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +28,7 @@
     <meta name="description" content="北大三个非典型学生正经地吐槽北大的生活，以及搞笑的、没节操的、伪学术的、和这个花花世界有关的一切">
     <meta name="keywords" content="在北大不吐槽会死,pkuspot,播客,Podcast,90后,官方网站,官网,扯淡刘,呆逼侯,碧池周,北大,学生">
     <meta name="author" content="Kyle He (hk1229.cn)">
-    <title>在北大不吐槽会死 播客 官方网站 | Pkuspot Podcast Offical Website</title>
+    <title>《在北大不吐槽会死》播客 官方网站 | Podcast »Pkuspot« Offical Website</title>
     <link rel="stylesheet" type="text/css" href="style/index.css">
     <link rel="stylesheet" type="text/css" href="http://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.min.css">
     <script type="text/javascript" src="//cdn.staticfile.org/jquery/1.7.1/jquery.min.js"></script>
@@ -166,10 +188,23 @@
         <div class="right-banner-content-wrapper">
             <div class="right-banner-content">
                 <div class="all-podcasts" id="js-all-podcasts">
-                    <div class="loading">
-                        <img src="//default.u.qiniudn.com/loading.gif">
-                    </div>
-                    <!-- Podcast List Placeholder -->
+                    <?php if ($isSpider): ?>
+                        <ul class="podcast-list">
+                            <?php foreach ($podcasts as $podcast): ?>
+                                <li>
+                                    <a class="podcast-list-play-btn" href="<?php echo $podcast['guid']; ?>" data-id="<?php echo $podcast['id']; ?>" title="播放">&nbsp;</a>
+                                    <span class="podcast-title" title="<?php echo $podcast['title']; ?>"><?php echo $podcast['title']; ?></span>
+                                    <span class="podcast-pubdate"><?php echo $podcast['pubdate']; ?></span>
+                                    <span class="podcast-description"><?php echo $podcast['description']; ?></span>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php else: ?>
+                        <div class="loading">
+                            <img src="//default.u.qiniudn.com/loading.gif">
+                        </div>
+                        <!-- Podcast List Placeholder -->
+                    <?php endif; ?>
                 </div>
                 <div class="help-info">
                     <h2>快捷键</h2>
@@ -233,6 +268,12 @@
         </div> <!-- /.right-banner-content-wrapper -->
     </div> <!-- /.right-vertical-banner -->
 
+    <?php 
+        if ($isSpider) {
+            include('about-from-zhihu.html');
+        } 
+    ?>
+        
 </body>
 
 <!-- 最新一集 Podcast 模版 -->
@@ -261,4 +302,5 @@
 
 <script type="text/javascript" src="script/index.js"></script>
 </html>
+
 <!-- Developed by Kyle He (admin@hk1229.cn) -->

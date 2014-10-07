@@ -551,7 +551,9 @@ body.show-banner .right-banner-toggle-switch-btn {
 }
 
 
-
+.podcast-about {
+    display: none;
+}
 
 
 
