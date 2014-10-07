@@ -46,17 +46,21 @@
     var animateTimer;
     var points = [];
 
-    $(doc).click(function(evt) {
+    $(doc).on('click touchend', function(evt) {
         if (!points.length) {
             startAnimate();
         }
         var point = {
-            x: evt.clientX,
-            y: evt.clientY,
-            r: rand(2, 20),
+            r: rand(4, 20),
             c: getRandomColor(),
             t: (new Date()).getTime()
         };
+        if (evt.type == 'touchend') {
+            evt = evt.originalEvent;
+            evt = (evt.changedTouches || evt.touches)[0];
+        }
+        point.x = evt.clientX;
+        point.y = evt.clientY;
         points.push(point);
         // console.log(point);
     });

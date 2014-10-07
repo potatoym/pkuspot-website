@@ -24,7 +24,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <meta name="description" content="北大三个非典型学生正经地吐槽北大的生活，以及搞笑的、没节操的、伪学术的、和这个花花世界有关的一切">
     <meta name="keywords" content="在北大不吐槽会死,pkuspot,播客,Podcast,90后,官方网站,官网,扯淡刘,呆逼侯,碧池周,北大,学生">
     <meta name="author" content="Kyle He (hk1229.cn)">
