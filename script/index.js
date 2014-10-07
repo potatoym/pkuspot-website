@@ -222,17 +222,13 @@
 
 
 // 绑定快捷键
-(function(W, $, T, H) {
+(function(W, $, T) {
     function toggleHash() {
         location.hash = getRightBannerToggleSwitchBtnHref();
     }
 
     // 右侧栏
     T.bind(['i', 'I'], toggleHash);
-    if (mobile) {
-        var mc = H(W);
-        mc.on("swipeleft swiperight", toggleHash);
-    }
 
     // Podcast 播放器
     function getPlayer() {
@@ -300,5 +296,5 @@
         player && (player.muted = !player.muted);
     });
 
-})(window, jQuery, Mousetrap, Hammer);
+})(window, jQuery, Mousetrap);
 
