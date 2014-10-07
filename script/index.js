@@ -30,7 +30,7 @@
 //      2014/08/23 15:27
 //
 //
-(function($) {
+(function(W, $) {
     /**
      * Body Handler
      * @type {jQueryElements}
@@ -42,7 +42,7 @@
      * @type {Boolean}
      */
     var isMobileDevice = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()));
-    window['mobile'] = isMobileDevice;
+    W['mobile'] = isMobileDevice;
 
     /**
      * Left Logo Handler
@@ -188,14 +188,14 @@
     function getRightBannerToggleSwitchBtnHref() {
         return hashPrefix + (location.hash.indexOf(rightBannerHashTag) >= 0 ? '' : rightBannerHashTag);
     }
-    window['getRightBannerToggleSwitchBtnHref'] = getRightBannerToggleSwitchBtnHref;
+    W['getRightBannerToggleSwitchBtnHref'] = getRightBannerToggleSwitchBtnHref;
     
     $('.right-banner-toggle-switch-btn').click(function(event) {
         $(this).attr('href', getRightBannerToggleSwitchBtnHref());
     });
 
     toggleRightBanner();
-    $(window).hashchange(toggleRightBanner);
+    $(W).hashchange(toggleRightBanner);
     
     /**
      * 右侧边栏
@@ -218,7 +218,7 @@
         $rightVerticalBanner.removeClass('show-podcast-list').addClass('show-help');
     });
 
-})(jQuery);
+})(window, jQuery);
 
 
 // 绑定快捷键
@@ -301,23 +301,4 @@
     });
 
 })(window, jQuery, Mousetrap, Hammer);
-
-
-
-/**
- * 百度分享参数
- * @type {Object}
- */
-window._bd_share_config = {
-    "common": {
-        "bdSnsKey": {},
-        "bdText": "",
-        "bdMini": "1",
-        "bdMiniList": false,
-        "bdPic": "",
-        "bdStyle": "0",
-        "bdSize": "16"
-    },
-    "share": {}
-};
 
