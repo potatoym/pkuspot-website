@@ -46,7 +46,6 @@
 
     <div class="container-wrapper">
         <div class="container">
-
             <div class="row">
                 <div class="col col-left">
                     <div class="big-logo">
@@ -175,7 +174,6 @@
                     </div>
                 </div>
             </div>
-
         </div> <!-- /.container -->
         <a class="right-banner-toggle-switch-btn" href="###" title="更多"></a>
     </div> <!-- /.container-wrapper -->
@@ -268,6 +266,8 @@
         </div> <!-- /.right-banner-content-wrapper -->
     </div> <!-- /.right-vertical-banner -->
 
+    <canvas id="canvas-background"></canvas>
+
     <?php 
         if ($isSpider) {
             include('about-from-zhihu.html');
@@ -301,6 +301,8 @@
 </script>
 
 <script type="text/javascript" src="script/index.js"></script>
+<script type="text/javascript" src="script/background-canvas.js"></script>
+
 </html>
 
 <!-- Developed by Kyle He (admin@hk1229.cn) -->

@@ -269,7 +269,7 @@ img {
     z-index: 6;
     top: 0;
     left: 0;
-    background: white;
+    /*background: white;*/
     -webkit-transition: left 500ms ease;
     -khtml-transition: left 500ms ease;
     -moz-transition: left 500ms ease;
@@ -318,11 +318,20 @@ body.show-banner .right-banner-toggle-switch-btn {
     z-index: 4;
     top: 0;
     right: 0;
+    right: -320px;
     box-shadow: 8px 0 8px #333 inset;
     color: white;
     font-family: 'SimSun';
+    -webkit-transition: right 500ms ease;
+    -khtml-transition: right 500ms ease;
+    -moz-transition: right 500ms ease;
+    -ms-transition: right 500ms ease;
+    -o-transition: right 500ms ease;
+    transition: right 500ms ease;
 }
-
+.show-banner .right-vertical-banner {
+    right: 0;
+}
 
 .right-banner-navi {
     height: 28px;
@@ -550,6 +559,14 @@ body.show-banner .right-banner-toggle-switch-btn {
 
 }
 
+#canvas-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
 
 .podcast-about {
     display: none;
