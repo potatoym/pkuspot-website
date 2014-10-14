@@ -82,12 +82,6 @@
                                     <div class="caption">荔枝FM</div>
                                 </a>
                             </div>
-                            <div class="icon itings">
-                                <a href="http://www.itings.com/pkuspot/usercontent_22462p0" target="_blank">
-                                    <img src="//default.u.qiniudn.com/itings-logo.png" />
-                                    <div class="caption">爱听FM</div>
-                                </a>
-                            </div>
                             <div class="clearfix"></div>
                         </div>
                     </div>
@@ -153,6 +147,9 @@
                     <div class="row">
                         <div class="title"><span>相关链接</span></div>
                         <div class="links">
+                            <div class="link link-weibo">
+                                <a href="http://weibo.com/3849491849/Brehr08Hh" target="_blank">招兵买马，搜刮银两——和北槽谈钱，谈感情</a>
+                            </div>
                             <div class="link link-zhihu">
                                 <a href="http://www.zhihu.com/question/24145180/answer/26851910" target="_blank">「在北大不吐槽会死」是一个怎样的播客节目？</a>
                             </div>
@@ -269,9 +266,9 @@
     <canvas id="canvas-background"></canvas>
 
     <?php 
-        if ($isSpider) {
+        // if ($isSpider) {
             include('about-from-zhihu.html');
-        } 
+        // } 
     ?>
         
 </body>
