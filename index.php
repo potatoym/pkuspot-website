@@ -2,11 +2,11 @@
     $ua = $_SERVER['HTTP_USER_AGENT'];
     // echo $ua;
     if (
-        stripos($ua, 'Googlebot')   !== false || 
-        stripos($ua, 'Baiduspider') !== false || 
+        stripos($ua, 'Googlebot')   !== false ||
+        stripos($ua, 'Baiduspider') !== false ||
         stripos($ua, 'bingbot')     !== false ||
-        stripos($ua, 'Yahoo!')      !== false || 
-        stripos($ua, 'YodaoBot')    !== false 
+        stripos($ua, 'Yahoo!')      !== false ||
+        stripos($ua, 'YodaoBot')    !== false
     ) {
         $isSpider = true;
         $podcasts = array();
@@ -14,7 +14,7 @@
         if (file_exists(PODCASTS_CACHE)) {
             $podcasts = json_decode(file_get_contents(PODCASTS_CACHE), true);
         }
-    } 
+    }
     else {
         $isSpider = false;
     }
@@ -30,7 +30,7 @@
     <meta name="author" content="Kyle He (hk1229.cn)">
     <title>《在北大不吐槽会死》播客 官方网站 | Podcast »Pkuspot« Offical Website</title>
     <link rel="stylesheet" type="text/css" href="style/index.css">
-    <link rel="stylesheet" type="text/css" href="http://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.min.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.min.css">
     <script type="text/javascript" src="//cdn.staticfile.org/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="//cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.min.js"></script>
     <script type="text/javascript" src="//cdn.staticfile.org/mustache.js/0.8.1/mustache.min.js"></script>
@@ -173,6 +173,10 @@
             </div>
         </div> <!-- /.container -->
         <a class="right-banner-toggle-switch-btn" href="###" title="更多"></a>
+        <a class="dianfm-open-btn" href="http://www.dian.fm/616" target="_blank">北槽直播间</a>
+        <div class="dianfm-live-panel" id="js-dianfm-live-panel">
+            <a class="dianfm-close-btn" href="###" title="关闭">✕</a>
+        </div>
     </div> <!-- /.container-wrapper -->
 
     <div class="right-vertical-banner show-podcast-list">
@@ -265,12 +269,12 @@
 
     <canvas id="canvas-background"></canvas>
 
-    <?php 
+    <?php
         // if ($isSpider) {
             include('about-from-zhihu.html');
-        // } 
+        // }
     ?>
-        
+
 </body>
 
 <!-- 最新一集 Podcast 模版 -->

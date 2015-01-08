@@ -93,7 +93,7 @@
     /**
      * 格式化日期
      * @param  {stirng} pubdate 通用时间格式字符串
-     * @return {string}         
+     * @return {string}
      */
     function formatDate(pubdate) {
         var pd = new Date(pubdate);
@@ -114,7 +114,7 @@
     /**
      * 渲染 Podcast 播放器
      * @param  {Object} data Podcast 数据
-     * @return 
+     * @return
      */
     function renderPodcastPlayer(data) {
         $('#js-latest-podcast').html(Mustache.render(podcast_tpl, data));
@@ -142,7 +142,7 @@
 
     /**
      * 渲染 Podcast 列表
-     * @return 
+     * @return
      */
     function renderAllPodcasts() {
         if (!isAllPodcastsLoaded) {
@@ -168,7 +168,7 @@
     var rightBannerHashTag = 'right-banner';
     /**
      * 右侧栏打开/关闭按钮
-     * @return 
+     * @return
      */
     function toggleRightBanner() {
         var hash = location.hash.substr(hashPrefix.length);
@@ -189,14 +189,14 @@
         return hashPrefix + (location.hash.indexOf(rightBannerHashTag) >= 0 ? '' : rightBannerHashTag);
     }
     W['getRightBannerToggleSwitchBtnHref'] = getRightBannerToggleSwitchBtnHref;
-    
+
     $('.right-banner-toggle-switch-btn').click(function(event) {
         $(this).attr('href', getRightBannerToggleSwitchBtnHref());
     });
 
     toggleRightBanner();
     $(W).hashchange(toggleRightBanner);
-    
+
     /**
      * 右侧边栏
      * @type {jQueryElements}
@@ -217,6 +217,41 @@
         event.preventDefault();
         $rightVerticalBanner.removeClass('show-podcast-list').addClass('show-help');
     });
+
+
+    if (!isMobileDevice) {
+        // 左下角开红点直播按钮
+        var $container = $('.container-wrapper');
+        var livePanelRendered = false;
+        function renderLivePanel(src) {
+            if (livePanelRendered) return ;
+            var $livePanel = $('<iframe>', {'src': src});
+            // $livePanel.error(hideLivePanel);
+            $livePanel.appendTo('#js-dianfm-live-panel');
+            livePanelRendered = true;
+        }
+        function hideLivePanel() {
+            $container.removeClass('dianfm-live-panel-zoom-end');
+            setTimeout(function () {
+                $container.removeClass('show-dianfm-live-panel');
+            }, 500);
+        }
+        function showLivePanel() {
+            $container.addClass('show-dianfm-live-panel');
+            setTimeout(function () {
+                $container.addClass('dianfm-live-panel-zoom-end');
+            }, 99);
+        }
+        $('.dianfm-open-btn').click(function (evt) {
+            evt.preventDefault();
+            renderLivePanel(this.href);
+            showLivePanel();
+        });
+        $('.dianfm-close-btn').click(function (evt) {
+            evt.preventDefault();
+            hideLivePanel();
+        });
+    }
 
 })(window, jQuery);
 

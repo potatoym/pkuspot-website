@@ -1,5 +1,5 @@
 /* events animation */
-@-webkit-keyframes _shark_rotate { 
+@-webkit-keyframes _shark_rotate {
     0% { -webkit-transform: translate(0, 0) rotate(0); }
     12.5% { -webkit-transform: translate(-1px, -1px); }
     25% { -webkit-transform: translate(-2px, 0) rotate(.8deg); }
@@ -10,7 +10,7 @@
     87.5% { -webkit-transform: translate(1px, 1px); }
     100% { -webkit-transform: translate(0, 0) rotate(0); }
 }
-@-moz-keyframes _shark_rotate { 
+@-moz-keyframes _shark_rotate {
     0% { -moz-transform: translate(0, 0) rotate(0); }
     12.5% { -moz-transform: translate(-1px, -1px); }
     25% { -moz-transform: translate(-2px, 0) rotate(.8deg); }
@@ -21,7 +21,7 @@
     87.5% { -moz-transform: translate(1px, 1px); }
     100% { -moz-transform: translate(0, 0) rotate(0); }
 }
-@-ms-keyframes _shark_rotate { 
+@-ms-keyframes _shark_rotate {
     0% { -ms-transform: translate(0, 0) rotate(0); }
     12.5% { -ms-transform: translate(-1px, -1px); }
     25% { -ms-transform: translate(-2px, 0) rotate(.8deg); }
@@ -32,7 +32,7 @@
     87.5% { -ms-transform: translate(1px, 1px); }
     100% { -ms-transform: translate(0, 0) rotate(0); }
 }
-@-o-keyframes _shark_rotate { 
+@-o-keyframes _shark_rotate {
     0% { -o-transform: translate(0, 0) rotate(0); }
     12.5% { -o-transform: translate(-1px, -1px); }
     25% { -o-transform: translate(-2px, 0) rotate(.8deg); }
@@ -43,7 +43,7 @@
     87.5% { -o-transform: translate(1px, 1px); }
     100% { -o-transform: translate(0, 0) rotate(0); }
 }
-@keyframes _shark_rotate { 
+@keyframes _shark_rotate {
     0% { transform: translate(0, 0) rotate(0); }
     12.5% { transform: translate(-1px, -1px); }
     25% { transform: translate(-2px, 0) rotate(.8deg); }
@@ -299,7 +299,8 @@ img {
     -o-transition: right 500ms ease;
     transition: right 500ms ease;
 }
-body.show-banner .container-wrapper {
+body.show-banner .container-wrapper,
+body.show-banner .dianfm-open-btn {
     left: -320px;
 }
 body.show-banner .right-banner-toggle-switch-btn {
@@ -480,6 +481,91 @@ body.show-banner .right-banner-toggle-switch-btn {
 }
 
 
+
+.dianfm-open-btn {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 11;
+    display: block;
+    width: 120px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background-color: #8D0102;
+    -webkit-transition: left 500ms ease;
+    -khtml-transition: left 500ms ease;
+    -moz-transition: left 500ms ease;
+    -ms-transition: left 500ms ease;
+    -o-transition: left 500ms ease;
+    transition: left 500ms ease;
+}
+.dianfm-live-panel {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 12;
+
+    -webkit-transition: -webkit-transform 460ms, opacity 460ms;
+    -moz-transition: -moz-transform 460ms, opacity 460ms;
+    -ms-transition: -ms-transform 460ms, opacity 460ms;
+    transition: transform 460ms, opacity 460ms;
+
+    opacity: 0;
+    -webkit-transform: scale(4) translate(0, 30px);
+    -moz-transform: scale(4) translate(0, 30px);
+    -ms-transform: scale(4) translate(0, 30px);
+    transform: scale(4) translate(0, 30px);
+}
+.show-dianfm-live-panel .dianfm-live-panel {
+    display: block;
+}
+.dianfm-live-panel-zoom-end .dianfm-live-panel {
+    opacity: 1;
+    -webkit-transform: scale(1) translate(0, 0);
+    -moz-transform: scale(1) translate(0, 0);
+    -ms-transform: scale(1) translate(0, 0);
+    transform: scale(1) translate(0, 0);
+}
+
+
+.dianfm-close-btn {
+    position: absolute;
+    top: 1px;
+    left: 2px;
+    display: block;
+    width: 34px;
+    height: 34px;
+    font-size: 30px;
+    font-weight: lighter;
+    line-height: 34px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    -webkit-transition: -webkit-transform 360ms;
+    -moz-transition: -moz-transform 360ms;
+    -ms-transition: -ms-transform 360ms;
+    transition: transform 360ms;
+}
+.dianfm-close-btn:hover {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+.dianfm-live-panel iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+
+/* iPad 横屏 */
 @media only screen and (min-width: 900px) {
     .big-logo {
         position: fixed;
@@ -520,7 +606,7 @@ body.show-banner .right-banner-toggle-switch-btn {
     }
 }
 
-
+/* iPad 竖屏 */
 @media only screen and (max-width: 900px) {
     .container {
         width: 88%;
@@ -533,8 +619,22 @@ body.show-banner .right-banner-toggle-switch-btn {
         float: none;
         width: 100%;
     }
+
+    .dianfm-open-btn {
+        position: fixed;
+        top: 0;
+        bottom: auto;
+        width: 28px;
+        height: 96px;
+        padding-top: 12px;
+        font-size: 14px;
+        letter-spacing: 1px;
+        line-height: 1.2;
+        opacity: .75
+    }
 }
 
+/* iPhone 竖屏 */
 @media only screen and (max-width: 460px) {
     .big-logo {
         width: 100%;
