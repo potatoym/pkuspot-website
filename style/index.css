@@ -32,17 +32,6 @@
     87.5% { -ms-transform: translate(1px, 1px); }
     100% { -ms-transform: translate(0, 0) rotate(0); }
 }
-@-o-keyframes _shark_rotate {
-    0% { -o-transform: translate(0, 0) rotate(0); }
-    12.5% { -o-transform: translate(-1px, -1px); }
-    25% { -o-transform: translate(-2px, 0) rotate(.8deg); }
-    37.5% { -o-transform: translate(-1px, 1px); }
-    50% { -o-transform: translate(0, 0) rotate(0); }
-    62.5% { -o-transform: translate(1px, -1px); }
-    75% { -o-transform: translate(2px, 0) rotate(-.8deg); }
-    87.5% { -o-transform: translate(1px, 1px); }
-    100% { -o-transform: translate(0, 0) rotate(0); }
-}
 @keyframes _shark_rotate {
     0% { transform: translate(0, 0) rotate(0); }
     12.5% { transform: translate(-1px, -1px); }
@@ -274,10 +263,8 @@ img {
     left: 0;
     /*background: white;*/
     -webkit-transition: left 500ms ease;
-    -khtml-transition: left 500ms ease;
     -moz-transition: left 500ms ease;
     -ms-transition: left 500ms ease;
-    -o-transition: left 500ms ease;
     transition: left 500ms ease;
 }
 
@@ -293,14 +280,11 @@ img {
     background-size: 18px;
     text-decoration: none;
     -webkit-transition: right 500ms ease;
-    -khtml-transition: right 500ms ease;
     -moz-transition: right 500ms ease;
     -ms-transition: right 500ms ease;
-    -o-transition: right 500ms ease;
     transition: right 500ms ease;
 }
-body.show-banner .container-wrapper,
-body.show-banner .dianfm-open-btn {
+body.show-banner .container-wrapper {
     left: -320px;
 }
 body.show-banner .right-banner-toggle-switch-btn {
@@ -327,10 +311,8 @@ body.show-banner .right-banner-toggle-switch-btn {
     color: white;
     font-family: 'SimSun';
     -webkit-transition: right 500ms ease;
-    -khtml-transition: right 500ms ease;
     -moz-transition: right 500ms ease;
     -ms-transition: right 500ms ease;
-    -o-transition: right 500ms ease;
     transition: right 500ms ease;
 }
 .show-banner .right-vertical-banner {
@@ -381,10 +363,8 @@ body.show-banner .right-banner-toggle-switch-btn {
     position: absolute;
     left: 0;
     -webkit-transition: left 500ms ease;
-    -khtml-transition: left 500ms ease;
     -moz-transition: left 500ms ease;
     -ms-transition: left 500ms ease;
-    -o-transition: left 500ms ease;
     transition: left 500ms ease;
 }
 .right-banner-content .all-podcasts,
@@ -481,26 +461,16 @@ body.show-banner .right-banner-toggle-switch-btn {
 }
 
 
-
-.dianfm-open-btn {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 11;
-    display: block;
-    width: 120px;
-    height: 34px;
-    line-height: 34px;
+.dianfm-entry {
+    margin: 1.15em 0;
     text-align: center;
+}
+.dianfm-open-btn {
     text-decoration: none;
-    color: white;
-    background-color: #8D0102;
-    -webkit-transition: left 500ms ease;
-    -khtml-transition: left 500ms ease;
-    -moz-transition: left 500ms ease;
-    -ms-transition: left 500ms ease;
-    -o-transition: left 500ms ease;
-    transition: left 500ms ease;
+    color: #8D0102;
+    padding-right: 22px;
+    background: url(http://default.u.qiniudn.com/new-window.svg?_t=1420822468) no-repeat right center;
+    background-size: 18px auto;
 }
 .dianfm-live-panel {
     display: none;
@@ -510,17 +480,29 @@ body.show-banner .right-banner-toggle-switch-btn {
     bottom: 0;
     left: 0;
     z-index: 12;
+    background: rgba(255, 255, 255, 0.85);
 
-    -webkit-transition: -webkit-transform 460ms, opacity 460ms;
-    -moz-transition: -moz-transform 460ms, opacity 460ms;
-    -ms-transition: -ms-transform 460ms, opacity 460ms;
-    transition: transform 460ms, opacity 460ms;
+    -webkit-transition: -webkit-transform 480ms, opacity 480ms;
+    -moz-transition: -moz-transform 480ms, opacity 480ms;
+    -ms-transition: -ms-transform 480ms, opacity 480ms;
+    transition: transform 480ms, opacity 480ms;
 
     opacity: 0;
-    -webkit-transform: scale(4) translate(0, 30px);
-    -moz-transform: scale(4) translate(0, 30px);
-    -ms-transform: scale(4) translate(0, 30px);
-    transform: scale(4) translate(0, 30px);
+    -webkit-transform: scale(3.5) translate(0, 30px);
+    -moz-transform: scale(3.5) translate(0, 30px);
+    -ms-transform: scale(3.5) translate(0, 30px);
+    transform: scale(3.5) translate(0, 30px);
+}
+.dianfm-live-panel iframe {
+    display: block;
+    width: 770px;
+    height: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -250px;
+    margin-left: -385px;
+    border: none;
 }
 .show-dianfm-live-panel .dianfm-live-panel {
     display: block;
@@ -532,43 +514,45 @@ body.show-banner .right-banner-toggle-switch-btn {
     -ms-transform: scale(1) translate(0, 0);
     transform: scale(1) translate(0, 0);
 }
+.container {
+    -webkit-transition: -webkit-filter 460ms linear;
+    -moz-transition: -moz-filter 460ms linear;
+    -ms-transition: -ms-filter 460ms linear;
+    /*transition: filter 460ms linear;*/
+
+    -webkit-filter: blur(0);
+    -moz-filter: blur(0);
+    -ms-filter: blur(0);
+    filter: blur(0);
+}
+.dianfm-live-panel-zoom-end .container {
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+}
 
 
 .dianfm-close-btn {
     position: absolute;
-    top: 1px;
-    left: 2px;
+    top: 16px;
+    left: 16px;
     display: block;
-    width: 34px;
-    height: 34px;
-    font-size: 30px;
-    font-weight: lighter;
-    line-height: 34px;
-    text-align: center;
+    width: 32px;
+    height: 32px;
     text-decoration: none;
-    color: black;
-    -webkit-transition: -webkit-transform 360ms;
-    -moz-transition: -moz-transform 360ms;
-    -ms-transition: -ms-transform 360ms;
-    transition: transform 360ms;
+    text-indent: -99999em;
+    background: url(http://default.u.qiniudn.com/cross-icon.svg) no-repeat center;
 }
-.dianfm-close-btn:hover {
-    -webkit-transform: rotate(180deg);
-    -moz-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    transform: rotate(180deg);
-}
-.dianfm-live-panel iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
+
 
 
 /* iPad 横屏 */
 @media only screen and (min-width: 900px) {
-    .big-logo {
+    .fixed-box {
         position: fixed;
+    }
+    .big-logo {
         height: 320px;
     }
     .big-logo img {
@@ -584,10 +568,8 @@ body.show-banner .right-banner-toggle-switch-btn {
         z-index: 6;
         background: white;
         -webkit-transition: all 360ms ease;
-        -khtml-transition: all 360ms ease;
         -moz-transition: all 360ms ease;
         -ms-transition: all 360ms ease;
-        -o-transition: all 360ms ease;
         transition: all 360ms ease;
     }
     /*.big-logo:hover .pkuspot-logo,*/
@@ -601,7 +583,6 @@ body.show-banner .right-banner-toggle-switch-btn {
         -webkit-animation: _shark_rotate 600ms linear infinite;
         -moz-animation: _shark_rotate 600ms linear infinite;
         -ms-animation: _shark_rotate 600ms linear infinite;
-        -o-animation: _shark_rotate 600ms linear infinite;
         animation: _shark_rotate 600ms linear infinite;
     }
 }
@@ -621,16 +602,7 @@ body.show-banner .right-banner-toggle-switch-btn {
     }
 
     .dianfm-open-btn {
-        position: fixed;
-        top: 0;
-        bottom: auto;
-        width: 28px;
-        height: 96px;
-        padding-top: 12px;
-        font-size: 14px;
-        letter-spacing: 1px;
-        line-height: 1.2;
-        opacity: .75
+
     }
 }
 

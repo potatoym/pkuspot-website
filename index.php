@@ -48,9 +48,14 @@
         <div class="container">
             <div class="row">
                 <div class="col col-left">
-                    <div class="big-logo">
-                        <img class="wechat-qrcode" src="//default.u.qiniudn.com/pkuspot-wechat-qrcode.png" />
-                        <img class="pkuspot-logo" src="//default.u.qiniudn.com/pkuspot-logo.png" alt="在北大不吐槽会死-logo" />
+                    <div class="fixed-box">
+                        <div class="big-logo">
+                            <img class="wechat-qrcode" src="//default.u.qiniudn.com/pkuspot-wechat-qrcode.png" />
+                            <img class="pkuspot-logo" src="//default.u.qiniudn.com/pkuspot-logo.png" alt="在北大不吐槽会死-logo" />
+                        </div>
+                        <div class="dianfm-entry">
+                            <a class="dianfm-open-btn" href="http://www.dian.fm/616" target="_blank">北槽直播间</a>
+                        </div>
                     </div>
                 </div>
                 <div class="col col-right">
@@ -166,14 +171,13 @@
                         <span>Copyright &copy; 2014 Pkuspot. All rights reserved.</span>
                     </div>
                     <div>
-                        <span>Developed by <a href="http://hk1229.cn/" target="_blank">Kyle He</a>. </span>
-                        <span>Fork me on <a href="http://github.com/599316527/pkuspot-website" target="blank">Github</a>.</span>
+                        <span>Developed by <a href="https://hk1229.cn/" target="_blank">Kyle He</a>. </span>
+                        <span>Fork me on <a href="https://github.com/599316527/pkuspot-website" target="blank">Github</a>.</span>
                     </div>
                 </div>
             </div>
         </div> <!-- /.container -->
         <a class="right-banner-toggle-switch-btn" href="###" title="更多"></a>
-        <a class="dianfm-open-btn" href="http://www.dian.fm/616" target="_blank">北槽直播间</a>
         <div class="dianfm-live-panel" id="js-dianfm-live-panel">
             <a class="dianfm-close-btn" href="###" title="关闭">✕</a>
         </div>
